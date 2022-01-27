@@ -68,3 +68,31 @@ void find_nearest_coo(vector<double>& D1,vector<double>& D2, vector<double>& X, 
 
 	return;
 }
+
+
+void find_nearest_dist(vector<double>& D1, vector<double>& D2, const vector<double>& Dist, const int N, const bool TriangSup)
+{
+	/*
+	Find the two nearest neighbors in the case of a file of distances
+	*/
+	for(int i=0; i<N; i++){
+		double d1 = numeric_limits<double>::max();
+		double d2 = numeric_limits<double>::max();
+		for(int j=0; j<N; j++){
+			if(j!=i){
+				double dist = DistValue(i,j,N,Dist,TriangSup);
+				if(dist<d1&&dist<d2){//controllare
+					d2=d1;
+					d1=dist;
+				}
+				else if(dist>=d1&&dist<d2){
+					d2=dist;
+				}
+			}
+		}
+		D1.push_back(d1);
+		D2.push_back(d2);
+	}
+
+}
+
