@@ -8,4 +8,4 @@ SET(CMAKE_CXX_COMPILER C:/MinGW/bin/g++)
 
 find_package(Gnuplot REQUIRED)
 
-add_executable (main.exe main.cpp)
+add_executable (main main.cpp)
