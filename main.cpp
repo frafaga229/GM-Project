@@ -86,7 +86,7 @@ int main(int argc, char* argv[])
   int Npoints=N/nbox;
   double ave_temp=0;
   double var_temp=0;
-  cout<<"Estimating the ID by TWO-NN algorithm: "<<' '<<nbox<<endl;
+  cout<<"Estimating the ID by TWO-NN algorithm: "<<endl;
   cout<<endl;
 
   vector<int> IND_loc(IND.begin()+(Npoints*(nbox-1)),IND.begin()+(Npoints*(nbox)));
@@ -123,11 +123,12 @@ int main(int argc, char* argv[])
 	ofstream file_gpl_fun("S_set.gpl");
     	file_gpl_fun<<fixed;
 	file_gpl_fun.precision(2);
-	file_gpl_fun<< "set key top left box lw 1  lc rgb \"#7F7F7F\" font \",5\" spacing 2" <<endl;
-	file_gpl_fun<< "set border 4095 lw 1 lc rgb \"#7F7F7F\" " <<endl; 
-	file_gpl_fun<< "set title \"S set "<<file_in<<"\" font \",20\"" <<endl;
-	file_gpl_fun<< "p \'fun.dat\' lc rgb \"#7F7F7F\" pt 7 not, "<<"\"<head -"<<N_retained<<" 'fun.dat'\" lc rgb \"#DC143C\" pt 7 t \"S set\", "<<dim_tot<<"*x"<<" lw 2 lc rgb \"#00BFFF\" t \" "<<dim_tot<<"*x\"" <<endl;
+	file_gpl_fun<< "set key top left box lw 1  lc rgb \"#7F7F7F\" font \",10\" spacing 2" <<endl;
+	file_gpl_fun<< "set border 4095 lw 1 lc rgb \"#7F7F7F\" " <<endl;
+	file_gpl_fun<< "set title \"ID Estimation "<<file_in<<"\" font \",20\"" <<endl;
+	file_gpl_fun<< "p \'fun.dat\' lc rgb \"#7F7F7F\" pt 7 not, "<<" \'fun.dat\' lc rgb \"#DC143C\" pt 7 t \"S set\", "<<dim_tot<<"*x"<<" lw 2 lc rgb \"#00BFFF\" t \" "<<dim_tot<<endl;
 	system("gnuplot -persist S_set.gpl");
+
 
 	file_gpl_fun.close();
 		
