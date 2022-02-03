@@ -22,7 +22,16 @@ using namespace std;
 void find_2_nn_dist(vector<double>& D1,vector<double>& D2, vector<double>& X, int N, int ncoords, bool periodicB)
 {
     /*
-    Find the distances to the first two nearest neighbors of each point
+	Class definition for finding the distances to the first two nearest neighbors of each point
+	input: 
+		X: Data
+		N: Number of points in the data
+		ncoords: number of coordinates of the data
+		periodicB: bool for periodic boundary conditions
+
+	output:
+		D1: vector of distance to the first nearest neighbor for each data point
+		D2: vector of distance to the sencond nearest neighbor for each data point
     */
 
 	double maxdist=numeric_limits<double>::max();;
@@ -72,6 +81,16 @@ void compute_ID(vector<double>& D1, vector<double>& D2, double& dim, int N, doub
 	/*
     Class definition for TWO-NN: Intrinsic dimension estimator by a minimal neighborhood information.
     The TWO-NN estimator uses only the distances to the first two nearest neighbors of each point.
+	input:
+		D1: vector of distance to the first nearest neighbor for each data point
+		D2: vector of distance to the sencond nearest neighbor for each data point
+		N: Number of points in the data
+		frac: fraction of retained data for better performance in ID computation
+		periodicB: bool for periodic boundary conditions
+		N_retained: Number of points retained by frac
+
+	output:
+		dim: Intrinsic Dimension (ID) of the data obtainde by the TWO-NN algorithm
 
 	References
     ----------
@@ -89,7 +108,7 @@ void compute_ID(vector<double>& D1, vector<double>& D2, double& dim, int N, doub
 		den=D1[i];
 
 		nu=num/den;
-			
+		
 		NU.push_back(nu);
 	
 		if(nu==1.) cout<<"Point "<<i<<" has the first two neighbors at the same distance!"<<endl;
