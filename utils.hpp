@@ -41,15 +41,17 @@ void find_2_nn_dist(vector<double>& D1,vector<double>& D2, vector<double>& X, in
 	    	L[cc]=1.;  
 	}
 	double Xtemp[ncoords];
-
+	//iteration over each pair of points xi,xj
 	for(int i=0; i<N; i++){
 		d1=maxdist;
 		d2=maxdist;
 		for(int j=0; j<N; j++){
 			if(j!=i){
 				dist=0.;
+				// iterating over each coordinate of the pair of points xi[coord], xj[coord]
 				for(int cc=0; cc<ncoords; cc++){
 					Xtemp[cc]=X.at(i*ncoords+cc)-X.at(j*ncoords+cc);
+					//periodic boundary condition
 					if(periodicB){
 						if(abs(Xtemp[cc])>L[cc]*0.5) 
 							if(X.at(i*ncoords+cc)>X.at(j*ncoords+cc)) Xtemp[cc]=L[cc]-Xtemp[cc];
@@ -58,7 +60,7 @@ void find_2_nn_dist(vector<double>& D1,vector<double>& D2, vector<double>& X, in
 					dist+=Xtemp[cc]*Xtemp[cc];
 				}
 				dist=sqrt(dist); 
-
+				// saving lower distance to d1 and d2
 				if(dist<d1&&dist<d2){
 					d2=d1;
 					d1=dist;
@@ -103,7 +105,7 @@ void compute_ID(vector<double>& D1, vector<double>& D2, double& dim, int N, doub
 	double nu;
 
 	for(int i=0; i<N; i++)
-	{
+	{ // computing the ratio of distances for each point
 		num=D2[i];
 		den=D1[i];
 
@@ -131,8 +133,9 @@ void compute_ID(vector<double>& D1, vector<double>& D2, double& dim, int N, doub
 		ofstream file_fun("fun.dat"); 
 
 		for(int i=0; i<N; i++)
-		{
+		{	//XX=log(nu)
 	 		XX[i]=log(NU.at(i));
+			//YY=-log(1-F(nu))
 			YY[i]=-log(1.-double(i)/double(N));
 
 			file_fun<<XX[i]<<' '<<YY[i]<<endl;

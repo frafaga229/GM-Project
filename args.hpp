@@ -1,4 +1,5 @@
 // Usage: ./main.exe -input <filename> [-discard <fraction>]
+// more details in the README file to run the experiments
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -11,7 +12,8 @@
 
 using namespace std;
 
-
+// parsing function
+// Usage: ./main.exe -input <filename> [-discard <fraction>]
 bool parse_command_line(string& filename, double& frac_retained, int argc, char* argv[])
 {
 	static string usage_string =

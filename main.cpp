@@ -12,16 +12,13 @@ int main(int argc, char* argv[])
 	bool coordinates=0;
 	int N=0;
 	double xx, yy;
-	double dd;
-	double rd;
 	string line;
 	int ncoords=0;
 	vector<double> X, Y;
 	vector<double> D1, D2;
 	bool periodicB=0;
 	double frac=0.9;
-  //order of the random correction in case of null distances;
-	double rdval=0.000005; 	//(null distances should be avoided!)
+
 
   // checking if we parse the arguments correctly
 	if (!parse_command_line(file_in, frac, argc, argv)) 
@@ -84,8 +81,6 @@ int main(int argc, char* argv[])
 
   int nbox=1;
   int Npoints=N/nbox;
-  double ave_temp=0;
-  double var_temp=0;
   cout<<"Estimating the ID by TWO-NN algorithm: "<<endl;
   cout<<endl;
 
